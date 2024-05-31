@@ -1,0 +1,17 @@
+# Start container in detached mode
+docker compose up -d
+
+# Create mysql tables, data and user, for the first time.
+./bin/mysql/init_db.sh
+
+# Stop container
+docker compose down
+
+# Run commands inside docker container
+docker exec -it <container> bash
+
+# View logs
+docker logs <container>
+
+# Mysql loggin
+mysql -u root -p
