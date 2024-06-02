@@ -7,11 +7,13 @@ import (
 	"net/http"
 	"os"
 
+	"github.com/douglasmg7/snippetbox/internal/models"
 	_ "github.com/go-sql-driver/mysql"
 )
 
 type application struct {
-	logger *slog.Logger
+	logger   *slog.Logger
+	snippets *models.SnippetModel
 }
 
 func main() {
@@ -38,7 +40,8 @@ func main() {
 	// Initialize a new instance of our application struct, containing the
 	// dependencies (for now, just the structured logger).
 	app := &application{
-		logger: logger,
+		logger:   logger,
+		snippets: &models.SnippetModel{DB: db},
 	}
 
 	app.logger.Info("starting server", "addr", *addr)
