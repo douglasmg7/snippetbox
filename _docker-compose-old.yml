@@ -1,14 +1,12 @@
 services:
-  snippetbox:
-    container_name: snippetbox
-    build:
-      context: .
-      dockerfile: ./snippetbox.dockerfile
-    restart: always
-    ports: 
-      - "4000:4000"
+  golang:
+    container_name: golang-snippetbox
+    image: golang:1.22.3-alpine3.20
+    working_dir: 
     depends_on:
       - mysql
+    volumes:
+      - ./.data/mysql:/var/lib/mysql
   mysql:
     container_name: mysql-snippetbox
     image: mysql

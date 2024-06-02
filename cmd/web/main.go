@@ -22,7 +22,9 @@ func main() {
 	// [username[:password]@][protocol[(address)]]/dbname[?param1=value1&...&paramN=valueN]
 	// username:password@protocol(address)/dbname?param=value
 	// dsn := flag.String("dsn", "web:pass@tcp(localhost:3306)/snippetbox?parseTime=true", "MySQL data source name")
-	dsn := flag.String("dsn", "web:pass@/snippetbox?parseTime=true", "MySQL data source name")
+	// dsn := flag.String("dsn", "web:pass@tcp(host.docker.internal:3306)/snippetbox?parseTime=true", "MySQL data source name")
+	// dsn := flag.String("dsn", "web:pass@/snippetbox?parseTime=true", "MySQL data source name")	// Working out of docker.
+	dsn := flag.String("dsn", "web:pass@tcp(mysql:3306)/snippetbox?parseTime=true", "MySQL data source name") // Using docker.
 	flag.Parse()
 
 	// Use the slog.New() function to initialize a new structured logger, which

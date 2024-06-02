@@ -15,3 +15,6 @@ docker logs <container>
 
 # Mysql loggin
 mysql -u root -p
+
+# Create snippetbox image
+docker build -t gg -f snippetbox.dockerfile .
