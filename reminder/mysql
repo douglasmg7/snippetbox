@@ -1,0 +1,32 @@
+# Start mysql container in detached mode:
+docker compose up mysql -d
+
+# Stop container
+docker compose down
+
+# Run commands inside docker container:
+docker exec -it <container_name> bash
+
+# Create mysql tables, data and user, for the first time:
+./bin/mysql/init_db.sh
+
+# Mysql loggin
+mysql -u root -p
+
+# List databases:
+mysql> show databases;
+mysql> use snippetbox;
+mysql> show tables;
+mysql> quit
+
+# Useful:
+mysql> desc table_a
+
+# Column by line:
+mysql> select * from snippets\G
+
+# Using less to show data:
+mysql> pager less -SFX
+mysql> SELECT * FROM sometable;
+
+

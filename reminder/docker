@@ -1,0 +1,17 @@
+# Start container in detached mode:
+docker compose up -d
+
+# Stop container:
+docker compose down
+
+# Run only mysql service:
+docker compose up mysql
+
+# Run commands inside docker container:
+docker exec -it <container_name> bash
+
+# View logs:
+docker logs <container_name>
+
+# Create snippetbox image:
+docker build -t <name>:<tag> -f snippetbox.dockerfile .
