@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"html/template"
 	"net/http"
+	"strconv"
 )
 
 func (app *application) home(w http.ResponseWriter, r *http.Request) {
@@ -30,7 +31,13 @@ func (app *application) home(w http.ResponseWriter, r *http.Request) {
 
 // Add a snippetView handler function.
 func (app *application) snippetView(w http.ResponseWriter, r *http.Request) {
-	w.Write([]byte("Display a specific snippet..."))
+	id, err := strconv.Atoi(r.PathValue("id"))
+	if err != nil || id < 0 {
+		http.NotFound(w, r)
+		return
+	}
+	fmt.Fprintf(w, "Display a specific snippet with ID %d...", id)
+	// w.Write([]byte("Display a specific snippet..."))
 }
 
 // Add a snippetCreate handler function.
@@ -41,6 +48,7 @@ func (app *application) snippetCreate(w http.ResponseWriter, r *http.Request) {
 func (app *application) snippetCreatePost(w http.ResponseWriter, r *http.Request) {
 	// // Use the w.WriteHeader() method to send a 201 status code.
 	// w.WriteHeader(201)
+	// w.WriteHeader(http.StatusOK)
 
 	// // Then w.Write() method to write the response body as normal.
 	// w.Write([]byte("Save a new snippet..."))
