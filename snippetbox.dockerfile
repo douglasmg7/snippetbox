@@ -1,5 +1,5 @@
 # Source image.
-FROM golang:1.22.3-alpine3.20 AS snippetbox
+FROM golang:1.23.1-alpine3.20 AS snippetbox
 
 RUN mkdir -p /code
 
