@@ -29,7 +29,10 @@ func main() {
 
 	// Use the slog.New() function to initialize a new structured logger, which
 	// writes to the standard out stream and uses the default settings.
-	logger := slog.New(slog.NewTextHandler(os.Stdout, nil))
+	logger := slog.New(slog.NewTextHandler(os.Stdout, &slog.HandlerOptions{
+		Level:     slog.LevelDebug,
+		AddSource: true,
+	}))
 
 	// Create data base pool.
 	db, err := openDB(*dsn)
@@ -46,7 +49,7 @@ func main() {
 		snippets: &models.SnippetModel{DB: db},
 	}
 
-	app.logger.Info("starting server", "addr", *addr)
+	app.logger.Info("starting server", slog.String("addr", *addr))
 
 	err = http.ListenAndServe(*addr, app.routes())
 	app.logger.Error(err.Error())
