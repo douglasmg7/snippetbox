@@ -18,13 +18,23 @@ type application struct {
 
 func main() {
 	addr := flag.String("addr", ":4000", "HTTP network address")
+
+	// parseTime=true force it to convert TIME and DATE fields to time.Time. Otherwise it returns these as []byte slices.
+
 	// dsn := flag.String("dsn", "web:pass@/snippetbox?parseTime=true", "MySQL data source name")
 	// [username[:password]@][protocol[(address)]]/dbname[?param1=value1&...&paramN=valueN]
 	// username:password@protocol(address)/dbname?param=value
+
 	// dsn := flag.String("dsn", "web:pass@tcp(localhost:3306)/snippetbox?parseTime=true", "MySQL data source name")
+
 	// dsn := flag.String("dsn", "web:pass@tcp(host.docker.internal:3306)/snippetbox?parseTime=true", "MySQL data source name")
-	// dsn := flag.String("dsn", "web:pass@/snippetbox?parseTime=true", "MySQL data source name")	// Working out of docker.
-	dsn := flag.String("dsn", "web:pass@tcp(mysql:3306)/snippetbox?parseTime=true", "MySQL data source name") // Using docker.
+
+	// Working out of docker
+	dsn := flag.String("dsn", "web:pass@/snippetbox?parseTime=true", "MySQL data source name")
+
+	// Using docker
+	// dsn := flag.String("dsn", "web:pass@tcp(mysql:3306)/snippetbox?parseTime=true", "MySQL data source name")
+
 	flag.Parse()
 
 	// Use the slog.New() function to initialize a new structured logger, which
