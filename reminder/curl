@@ -1,0 +1,4 @@
+# -L flag instructs curl to automatically follow redirects.
+# -d, --data: sends specific data payload in an HTTP POST request.
+# -i, --include: Includes the HTTP response headers in the final output text.
+curl -iL -d "" http://localhost:4000/snippet/create
